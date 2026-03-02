@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -9113168347366101870}
   - component: {fileID: -8971064262029751978}
   m_Layer: 19
-  m_Name: Fireball
+  m_Name: Superball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,14 +83,14 @@ MonoBehaviour:
         RawValue: 0
       BoxExtents:
         X:
-          RawValue: 8192
+          RawValue: 7209
         Y:
-          RawValue: 8192
+          RawValue: 9241
       PositionOffset:
         X:
-          RawValue: 1024
+          RawValue: 0
         Y:
-          RawValue: 10240
+          RawValue: 11272
       RotationOffset:
         RawValue: 0
       UserTag: 0
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 5329144335610595165}
   - component: {fileID: 9162743564300288012}
   m_Layer: 19
-  m_Name: FireGraphics
+  m_Name: SuperballGraphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,7 +464,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 500
-  m_Sprite: {fileID: 5353841184698615464, guid: 8b4c76bfff99dba4b90ef29e19c39f48,
+  m_Sprite: {fileID: 2684757423866453060, guid: 130808284f8d46d4da76bec9bd303f8d,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -483,20 +483,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7243713612715078606}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41c5d135866d4444088fd55baaa2ae03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isDisplaying: 1
-  frame: 0
+  frame: 0.5826652
   runInEditor: 0
   fps: 12
   frames:
-  - {fileID: 5353841184698615464, guid: 8b4c76bfff99dba4b90ef29e19c39f48, type: 3}
-  - {fileID: 750297706712597742, guid: 8b4c76bfff99dba4b90ef29e19c39f48, type: 3}
-  - {fileID: -8127487528002223245, guid: 8b4c76bfff99dba4b90ef29e19c39f48, type: 3}
-  - {fileID: -3915765450054648673, guid: 8b4c76bfff99dba4b90ef29e19c39f48, type: 3}
+  - {fileID: 2684757423866453060, guid: 130808284f8d46d4da76bec9bd303f8d, type: 3}
   colorblindModeFrames: []
   useUnscaledDelta: 0
   sRenderer: {fileID: 5329144335610595165}

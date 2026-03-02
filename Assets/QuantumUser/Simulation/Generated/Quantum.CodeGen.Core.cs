@@ -102,6 +102,8 @@ namespace Quantum {
     PropellerMushroom,
     BlueShell,
     HammerSuit,
+    BubbleFlower,
+    SuperballFlower,
     MegaMushroom,
   }
   public enum StageTileFlags : byte {

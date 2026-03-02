@@ -1381,7 +1381,7 @@ namespace Quantum {
 
             if (!(inputs.PowerupAction.WasPressed
                 || (state == PowerupState.PropellerMushroom && inputs.PropellerPowerupAction.WasPressed && !physicsObject->IsTouchingGround && !mario->IsWallsliding)
-                || ((state == PowerupState.FireFlower || state == PowerupState.IceFlower || state == PowerupState.HammerSuit) && inputs.FireballPowerupAction.WasPressed))) {
+                || ((state == PowerupState.FireFlower || state == PowerupState.IceFlower || state == PowerupState.HammerSuit || state == PowerupState.BubbleFlower || state == PowerupState.SuperballFlower) && inputs.FireballPowerupAction.WasPressed))) {
                 return;
             }
 
@@ -1393,7 +1393,9 @@ namespace Quantum {
             switch (mario->CurrentPowerupState) {
             case PowerupState.IceFlower:
             case PowerupState.FireFlower:
-            case PowerupState.HammerSuit: {
+            case PowerupState.BubbleFlower:
+            case PowerupState.HammerSuit: 
+            case PowerupState.SuperballFlower: {
 
                 if (mario->ProjectileDelayFrames > 0 || mario->IsWallsliding || (mario->JumpState == JumpState.TripleJump && !physicsObject->IsTouchingGround)
                     || mario->IsSpinnerFlying || mario->IsDrilling || mario->IsSkidding || mario->IsTurnaround) {
@@ -1423,6 +1425,9 @@ namespace Quantum {
                 Projectile* projectile;
                 if (mario->CurrentPowerupState == PowerupState.HammerSuit) {
                     projectile = ShootHammerProjectile(f, ref filter, physics);
+
+                } else if (mario->CurrentPowerupState == PowerupState.BubbleFlower) {
+                    projectile = ShootBubbleProjectile(f, ref filter, physics);  
                 } else {
                     projectile = ShootNormalProjectile(f, ref filter, physics);
                 }
@@ -1479,6 +1484,17 @@ namespace Quantum {
             projectile->InitializeHammer(f, newEntity, filter.Entity, spawnPos, mario->FacingRight, false /* filter.Inputs.Up.IsDown */);
             return projectile;
         }
+        private Projectile* ShootBubbleProjectile(Frame f, ref Filter filter, MarioPlayerPhysicsInfo physics) {
+            var mario = filter.MarioPlayer;
+            var physicsObject = filter.PhysicsObject;
+
+            FPVector2 spawnPos = filter.Transform->Position + new FPVector2(mario->FacingRight ? FP._0_25 : -FP._0_25, Constants._0_40);
+            EntityRef newEntity = f.Create(f.SimulationConfig.BubblePrototype);
+
+            var projectile = f.Unsafe.GetPointer<Projectile>(newEntity);
+            projectile->InitializeBubble(f, newEntity, filter.Entity, spawnPos, mario->FacingRight);
+            return projectile;
+        }
 
 
         private Projectile* ShootNormalProjectile(Frame f, ref Filter filter, MarioPlayerPhysicsInfo physics) {
@@ -1488,7 +1504,9 @@ namespace Quantum {
             FPVector2 spawnPos = filter.Transform->Position + new FPVector2(mario->FacingRight ? FP._0_25 : -FP._0_25, Constants._0_35);
 
             EntityRef newEntity = f.Create(mario->CurrentPowerupState == PowerupState.IceFlower
-                ? f.SimulationConfig.IceballPrototype
+                ? f.SimulationConfig.IceballPrototype:
+                mario->CurrentPowerupState == PowerupState.SuperballFlower
+                ? f.SimulationConfig.SuperballPrototype
                 : f.SimulationConfig.FireballPrototype);
 
             var projectile = f.Unsafe.GetPointer<Projectile>(newEntity);

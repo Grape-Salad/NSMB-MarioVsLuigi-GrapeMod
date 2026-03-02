@@ -248,6 +248,8 @@ namespace Quantum {
             }
             case PowerupState.HammerSuit:
             case PowerupState.FireFlower:
+            case PowerupState.BubbleFlower:
+            case PowerupState.SuperballFlower:
             case PowerupState.IceFlower:
             case PowerupState.PropellerMushroom:
             case PowerupState.BlueShell: {
